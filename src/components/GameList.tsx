@@ -10,8 +10,8 @@ export function GameList({ games, onSelect }: GameListProps) {
   return (
     <section className="panel">
       <div className="section-heading">
-        <h2>試合一覧</h2>
-        <p>{games.length}件を表示中です。</p>
+        <h2>これまでの試合履歴</h2>
+        <p>{games.length}件を新しい順で表示中です。</p>
       </div>
 
       {games.length === 0 ? (

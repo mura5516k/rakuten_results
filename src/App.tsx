@@ -4,6 +4,7 @@ import { FilterBar } from './components/FilterBar'
 import { GameDetailModal } from './components/GameDetailModal'
 import { GameList } from './components/GameList'
 import { Header } from './components/Header'
+import { LatestGameHighlight } from './components/LatestGameHighlight'
 import { SummaryCards } from './components/SummaryCards'
 import { getGames } from './services/gameService'
 import type { Game, GameFilters } from './types/game'
@@ -16,6 +17,17 @@ const initialFilters: GameFilters = {
   opponent: 'all',
   homeAway: 'all',
   status: 'all',
+}
+
+function sortGamesByLatest(games: Game[]) {
+  return [...games].sort((left, right) => {
+    const leftTime = new Date(`${left.date}T${left.startTime || '00:00'}:00`).getTime()
+    const rightTime = new Date(
+      `${right.date}T${right.startTime || '00:00'}:00`,
+    ).getTime()
+
+    return rightTime - leftTime
+  })
 }
 
 function App() {
@@ -67,6 +79,9 @@ function App() {
   )
 
   const filteredGames = useMemo(() => filterGames(games, filters), [games, filters])
+  const sortedGames = useMemo(() => sortGamesByLatest(filteredGames), [filteredGames])
+  const latestGame = sortedGames[0] ?? null
+  const historyGames = latestGame ? sortedGames.slice(1) : []
   const stats = useMemo(() => calculateStats(filteredGames), [filteredGames])
   const qrEnabled =
     /^https?:\/\//.test(qrValue) &&
@@ -99,7 +114,10 @@ function App() {
               opponents={opponents}
               onChange={setFilters}
             />
-            <GameList games={filteredGames} onSelect={setSelectedGame} />
+            {latestGame ? (
+              <LatestGameHighlight game={latestGame} onSelect={setSelectedGame} />
+            ) : null}
+            <GameList games={historyGames} onSelect={setSelectedGame} />
           </>
         )}
       </div>
