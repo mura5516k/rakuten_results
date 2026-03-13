@@ -3,19 +3,28 @@ import { GameCard } from './GameCard'
 
 type GameListProps = {
   games: Game[]
+  title: string
+  description: string
+  emptyMessage: string
   onSelect: (game: Game) => void
 }
 
-export function GameList({ games, onSelect }: GameListProps) {
+export function GameList({
+  games,
+  title,
+  description,
+  emptyMessage,
+  onSelect,
+}: GameListProps) {
   return (
     <section className="panel">
       <div className="section-heading">
-        <h2>これまでの試合履歴</h2>
-        <p>{games.length}件を新しい順で表示中です。</p>
+        <h2>{title}</h2>
+        <p>{description}</p>
       </div>
 
       {games.length === 0 ? (
-        <div className="empty-state">条件に一致する試合はありません。</div>
+        <div className="empty-state">{emptyMessage}</div>
       ) : (
         <div className="game-list">
           {games.map((game) => (

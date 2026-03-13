@@ -23,7 +23,7 @@ export function LatestGameHighlight({
       <div className="section-heading">
         <div>
           <h2>直近の試合結果</h2>
-          <p>いちばん新しい試合をハイライト表示しています。</p>
+          <p>終了済みの試合のうち、いちばん新しい結果を表示しています。</p>
         </div>
       </div>
 

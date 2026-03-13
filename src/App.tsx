@@ -19,15 +19,16 @@ const initialFilters: GameFilters = {
   status: 'all',
 }
 
-function sortGamesByLatest(games: Game[]) {
-  return [...games].sort((left, right) => {
-    const leftTime = new Date(`${left.date}T${left.startTime || '00:00'}:00`).getTime()
-    const rightTime = new Date(
-      `${right.date}T${right.startTime || '00:00'}:00`,
-    ).getTime()
+function getGameTime(game: Game) {
+  return new Date(`${game.date}T${game.startTime || '00:00'}:00`).getTime()
+}
 
-    return rightTime - leftTime
-  })
+function sortGamesByLatest(games: Game[]) {
+  return [...games].sort((left, right) => getGameTime(right) - getGameTime(left))
+}
+
+function sortGamesByEarliest(games: Game[]) {
+  return [...games].sort((left, right) => getGameTime(left) - getGameTime(right))
 }
 
 function App() {
@@ -79,9 +80,24 @@ function App() {
   )
 
   const filteredGames = useMemo(() => filterGames(games, filters), [games, filters])
-  const sortedGames = useMemo(() => sortGamesByLatest(filteredGames), [filteredGames])
-  const latestGame = sortedGames[0] ?? null
-  const historyGames = latestGame ? sortedGames.slice(1) : []
+  const finishedGames = useMemo(
+    () => filteredGames.filter((game) => game.status === '終了'),
+    [filteredGames],
+  )
+  const upcomingGames = useMemo(
+    () => filteredGames.filter((game) => game.status === '試合前'),
+    [filteredGames],
+  )
+  const sortedFinishedGames = useMemo(
+    () => sortGamesByLatest(finishedGames),
+    [finishedGames],
+  )
+  const sortedUpcomingGames = useMemo(
+    () => sortGamesByEarliest(upcomingGames),
+    [upcomingGames],
+  )
+  const latestResult = sortedFinishedGames[0] ?? null
+  const resultHistory = latestResult ? sortedFinishedGames.slice(1) : []
   const stats = useMemo(() => calculateStats(filteredGames), [filteredGames])
   const qrEnabled =
     /^https?:\/\//.test(qrValue) &&
@@ -114,10 +130,23 @@ function App() {
               opponents={opponents}
               onChange={setFilters}
             />
-            {latestGame ? (
-              <LatestGameHighlight game={latestGame} onSelect={setSelectedGame} />
+            {latestResult ? (
+              <LatestGameHighlight game={latestResult} onSelect={setSelectedGame} />
             ) : null}
-            <GameList games={historyGames} onSelect={setSelectedGame} />
+            <GameList
+              games={resultHistory}
+              title="これまでの試合結果"
+              description={`${resultHistory.length}件を新しい順で表示中です。`}
+              emptyMessage="表示できる過去の試合結果はありません。"
+              onSelect={setSelectedGame}
+            />
+            <GameList
+              games={sortedUpcomingGames}
+              title="今後の試合予定"
+              description={`${sortedUpcomingGames.length}件を日付の近い順で表示中です。`}
+              emptyMessage="表示できる試合予定はありません。"
+              onSelect={setSelectedGame}
+            />
           </>
         )}
       </div>
