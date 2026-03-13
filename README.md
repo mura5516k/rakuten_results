@@ -51,6 +51,17 @@ npm run build
 - GitHub Pages では `dist` を公開対象にしやすい構成です
 - 公開URLでアクセスすると、画面右上にそのURLを元にしたQRコードが表示されます
 - ローカル環境でQRコードを表示したい場合は `npm run dev:host` を使うか、`.env` に `VITE_PUBLIC_APP_URL=https://example.com` を設定してください
+- `main` ブランチのソースをそのまま公開すると空白ページになるため、`dist` を `gh-pages` ブランチへデプロイしてください
+
+### GitHub Pages 用デプロイ手順
+
+```bash
+npm install
+npm run deploy
+```
+
+このコマンドで `dist` が生成され、`gh-pages` ブランチへ公開用ファイルが push されます。  
+GitHub 側の Pages 設定では、公開元を `gh-pages` ブランチの `/ (root)` にしてください。
 
 ## GitHub へ push する手順
 
