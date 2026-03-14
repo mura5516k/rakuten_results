@@ -47,6 +47,14 @@ jobs:
           git commit -m "Update preseason data"
           git push origin main
 
+      - name: Build app
+        if: steps.changes.outputs.changed == 'true'
+        run: npm run build
+
       - name: Deploy GitHub Pages
         if: steps.changes.outputs.changed == 'true'
-        run: npm run deploy
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_branch: gh-pages
+          publish_dir: ./dist
