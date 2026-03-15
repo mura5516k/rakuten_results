@@ -1,6 +1,6 @@
 {
   "season": "2026",
-  "updatedAt": "2026-03-15T15:34:04.378Z",
+  "updatedAt": "2026-03-15T18:46:41.161Z",
   "games": [
     {
       "id": "e-m-01",
@@ -211,7 +211,7 @@
       "sourceUrl": "https://npb.jp/scores/2026/0314/d-e-02/"
     },
     {
-      "id": "2026-03-15-dragons",
+      "id": "d-e-03",
       "date": "2026-03-15",
       "weekday": "土",
       "category": "オープン戦",
@@ -219,12 +219,12 @@
       "venue": "バンテリンドーム",
       "homeAway": "ビジター",
       "startTime": "13:30",
-      "status": "試合前",
-      "rakutenScore": null,
-      "opponentScore": null,
-      "result": null,
+      "status": "終了",
+      "rakutenScore": 0,
+      "opponentScore": 4,
+      "result": "Lose",
       "note": "",
-      "sourceUrl": "https://npb.jp/preseason/2026/schedule_detail.html"
+      "sourceUrl": "https://npb.jp/scores/2026/0315/d-e-03/"
     },
     {
       "id": "2026-03-17-lions",
