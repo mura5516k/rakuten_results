@@ -1,6 +1,6 @@
 {
   "season": "2026",
-  "updatedAt": "2026-03-17T16:10:14.342Z",
+  "updatedAt": "2026-03-17T19:09:19.916Z",
   "games": [
     {
       "id": "e-m-01",
@@ -227,7 +227,7 @@
       "sourceUrl": "https://npb.jp/scores/2026/0315/d-e-03/"
     },
     {
-      "id": "2026-03-17-lions",
+      "id": "l-e-01",
       "date": "2026-03-17",
       "weekday": "月",
       "category": "オープン戦",
@@ -235,12 +235,12 @@
       "venue": "ベルーナドーム",
       "homeAway": "ビジター",
       "startTime": "18:00",
-      "status": "試合前",
-      "rakutenScore": null,
-      "opponentScore": null,
-      "result": null,
+      "status": "終了",
+      "rakutenScore": 0,
+      "opponentScore": 0,
+      "result": "Draw",
       "note": "",
-      "sourceUrl": "https://npb.jp/preseason/2026/schedule_detail.html"
+      "sourceUrl": "https://npb.jp/scores/2026/0317/l-e-01/"
     },
     {
       "id": "2026-03-18-lions",
