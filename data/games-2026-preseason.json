@@ -1,6 +1,6 @@
 {
   "season": "2026",
-  "updatedAt": "2026-03-20T15:49:24.580Z",
+  "updatedAt": "2026-03-20T18:57:13.238Z",
   "games": [
     {
       "id": "e-m-01",
@@ -259,7 +259,7 @@
       "sourceUrl": "https://npb.jp/scores/2026/0318/l-e-02/"
     },
     {
-      "id": "2026-03-20-giants",
+      "id": "g-e-02",
       "date": "2026-03-20",
       "weekday": "木",
       "category": "オープン戦",
@@ -267,12 +267,12 @@
       "venue": "東京ドーム",
       "homeAway": "ビジター",
       "startTime": "18:00",
-      "status": "試合前",
-      "rakutenScore": null,
-      "opponentScore": null,
-      "result": null,
+      "status": "終了",
+      "rakutenScore": 1,
+      "opponentScore": 2,
+      "result": "Lose",
       "note": "",
-      "sourceUrl": "https://npb.jp/preseason/2026/schedule_detail.html"
+      "sourceUrl": "https://npb.jp/scores/2026/0320/g-e-02/"
     },
     {
       "id": "2026-03-21-giants",
